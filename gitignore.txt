@@ -1,0 +1,3 @@
+/maven/target/
+/maven/nbproject/
+maven/src/main/resources/mail.properties
