@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa: Login cliente</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+         
+            <!--
+                - PRODUCT
+              -->
+
+              <div class="product-container">
+
+                  <div class="container">
+
+
+
+                      <div class="product-box">
+
+
+                          <!--
+                            - PRODUCT FEATURED
+                          -->
+
+                          <div class="product-featured">
+
+                              <h1 class="title">Área de clientes</h1>
+                              <div class="showcase-wrapper ">
+
+                                  <div class="showcase-container">
+                                      <div class="showcase">
+
+                                          <div class="showcase-banner">
+
+                                              <img th:src="@{/static/assets/images/20945760.jpg}"
+                                                   class="showcase-img"
+                                                   style="min-height: 250px;">
+  
+                                          </div>
+
+                                          <div class="showcase-content">
+
+                                              <form class="form-cultured" action="/pr9/auth/login">
+                                                  <div class="control">
+                                                      <label>Usuario:</label>
+                                                      <input type="text" class="input-cultured"
+                                                             value="cliente1"
+                                                             name="username"/>
+                                                  </div>
+                                                  <div style="margin: 40px 0;">
+                                                      <label>Contraseña:</label>
+                                                      <input type="password" class="input-cultured"
+                                                             value="cliente1"
+                                                             name="password"/>
+                                                  </div>
+
+                                                  <p class="showcase-desc"></p>
+
+                                                  <input type="hidden" name="returnURL" value="/pr9/cliente/cuenta"/>
+                                                  <button class="btn-primary">Iniciar sesión</button>
+                                              </form>
+                                              
+                                              <a href="/pr9/recuperar" style="color: var(--salmon-pink);">¿Olvidaste tu contraseña?</a>
+
+                                          </div>
+
+                                      </div>
+
+                                  </div>
+
+                              </div>
+
+                          </div>
+
+
+                      </div>
+
+                      <div class="sidebar showcase-container sidebar-boxd">
+                          <div>
+                              <h3>¿Aún no tienes cuenta?</h3>
+                              <div class="line">
+                                  <ion-icon name="people-circle-outline"></ion-icon> 
+                                  <a th:href="@{|/auth/register|}">Crear cuenta</a>
+                              </div>
+                          </div>
+
+                      </div>
+
+                  </div>
+
+              </div>
+            
+        </main>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+
+.tabla-pedido table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-pedido th {
+    background-color: #5C7E6F;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    border: none;
+}
+
+.tabla-pedido td {
+    padding: 10px;
+    border: none;
+}
+
+.tabla-pedido tbody td {
+    border-top: 1px solid #ccc;
+}
+
+.tabla-pedido tbody td:first-child {
+    border-left: none;
+}
+
+.tabla-pedido tbody td:last-child {
+    border-right: none;
+}
+
+.tabla-pedido tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.tabla-pedido tbody tr:nth-child(even) {
+    background-color: #e9e9e9;
+}
+
+
+.preciototal {
+    font-weight: bold; 
+    font-size: 24px;  
+}
+
+
+.showcase-desc {
+    font-size: 16px;
+    font-weight: bold;
+}
+.completado {
+    color: blue;
+}
+.en-curso {
+    color: red;
+}

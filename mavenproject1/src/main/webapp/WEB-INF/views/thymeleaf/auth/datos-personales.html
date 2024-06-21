@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa: Area cliente</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+            
+            <div class="product-container">
+
+            <div class="container">
+
+                <!--
+                          - SIDEBAR
+                    -->
+
+                <div class="sidebar  has-scrollbar sidebar-user-account" data-mobile-menu>
+
+
+                    <div class="product-showcase">
+
+                        <div class="showcase-wrapper" style="margin-top: 80px;">
+
+                            <div class="showcase-container">
+
+                                <div class="showcase">
+
+                                    <a href="/pr9/cliente/pedido" class="showcase-img-box">
+                                        <ion-icon name="cube" style="color: var(--sandy-brown);"></ion-icon>
+                                    </a>
+
+                                    <div class="showcase-content">
+
+                                        <a th:href="@{|/cliente/pedido|}">
+                                            <h4 class="showcase-title">Compras realizadas</h4>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                
+                                <div class="showcase">
+
+                                    <a href="/pr9/cliente/pedido/anulados" class="showcase-img-box">
+                                        <ion-icon name="cube" style="color: var(--salmon-pink);"></ion-icon>
+                                    </a>
+
+                                    <div class="showcase-content">
+
+                                        <a th:href="@{|/cliente/pedido/anulados|}">
+                                            <h4 class="showcase-title">Pedidos anulados</h4>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="showcase">
+
+                                    <a href="/pr9/cliente/datos" class="showcase-img-box">
+                                        <ion-icon name="person" style="color: var(--ocean-green);"></ion-icon>
+                                    </a>
+
+                                    <div class="showcase-content">
+
+                                        <a href="#">
+                                            <h4 class="showcase-title">Datos personales</h4>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                                <div class="showcase">
+                                    <a href="/pr9/cliente/favoritos" class="showcase-img-box">
+                                        <ion-icon name="heart-outline" style="color: var(--salmon-pink);"></ion-icon>
+                                    </a>
+
+                                    <div class="showcase-content">
+                                        <a href="#">
+                                            <h4 class="showcase-title">Favoritos</h4>
+                                        </a>
+
+                                    </div>
+                                </div> <!-- showcase -->
+
+
+                                <div class="showcase">
+                                    <a href="/pr9/logout" class="showcase-img-box">
+                                        <ion-icon name="exit" style="color: var(--onyx);"></ion-icon>
+                                    </a>
+                                    <div class="showcase-content">
+                                        <a th:href="@{|/auth/logout|}">
+                                            <h4 class="showcase-title">Cerrar sesión</h4>
+                                        </a>
+
+                                    </div>
+                                </div> <!-- showcase -->
+
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product-box">
+
+                    <!--
+                                - PRODUCT FEATURED
+                        -->
+
+                    <div class="product-featured">
+
+                        <h1 class="title">´Datos personales</h1>
+
+                        <div class="showcase-wrapper">
+
+                            <div class="showcase-container">
+
+                                <div class="showcase" style="align-items: flex-start;">
+
+
+                                    <div class="showcase-content">
+
+                                        <form class="form-cultured" 
+                                                method="post"
+                                                th:action="@{/cliente/avatar}" 
+                                                enctype="multipart/form-data">
+                                            <div class="control">
+                                                <label>Selecione imagen:</label>
+                                                <input type="file" name="file" />
+                                            </div>
+
+                                            <button class="btn-primary" type="submit">Subir imagen</button>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            </div>  
+        </main>
+    </body>
+</html>

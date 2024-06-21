@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa: [[ ${articulo.nombre} ]]</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+            <h2>Ficha del artículo</h2>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis, repudiandae! Inventore placeat
+                eveniet aspernatur corrupti necessitatibus, atque, dolorem fugiat quo nobis optio veniam explicabo
+                eligendi minima assumenda facere molestias. Ducimus!
+            </p>
+            <section class="card-layout">
+
+
+                <div class="card-layout__item clg-item">
+                    <h3>
+                        [[ ${articulo.codigo} ]]
+                    </h3>
+
+                    <div class="clg-item__image">
+                        <img th:src="@{/static/assets/images/store/{id}(id=${articulo.foto})}"
+                             th:alt="${articulo.nombre}"
+                             class="showcase-img"
+                             >
+                    </div>
+                    <div class="clg-item__title">
+                        <a href="#">[[ ${articulo.nombre} ]]</a>
+
+                    </div>
+                    <div class='clg-item__price'>
+                        [[ ${articulo.pvp} ]]€
+                    </div>
+                    <div class="clg-item__addcart">
+                        <form th:action="@{/ejemplo/cesta}" method="post">
+                            <input type="hidden" name="codigoArticulo" th:value="${articulo.codigo}"/>
+                            <button type="submit" class="btn btn-add">Comprar</button> 
+                        </form>
+                    </div>
+                    
+                </div> <!-- #product item-->
+
+            </section>
+
+        </main>
+    </body>
+</html>

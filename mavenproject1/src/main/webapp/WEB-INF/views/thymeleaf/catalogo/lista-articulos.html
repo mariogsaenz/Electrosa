@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Catálogo</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+            
+        <!--
+              - PRODUCT
+            -->
+        <div class="product-container">
+            <div class="container">
+
+                <div class="product-box">
+
+                    <!--
+                          - PRODUCT GRID
+                        -->
+
+                    <div class="product-main">
+
+                        <h1 class="title">[[ #{catalog.title} ]]</h1>
+
+                        <div class="paginator-wrapper">
+                            <a th:if="${!pageInfo.isFirst()}" th:href="@{/catalogo/}">
+                                <i class="lni lni-shift-left"></i> [[ #{paginator.first} ]]
+                            </a>
+                            <a th:if="${pageInfo.hasPrevious()}" 
+                                th:href="@{|/catalogo/?p=${pageInfo.previousPageable().getPageNumber()+1}|}">
+                                [[ #{paginator.previous} ]]
+                            </a>    
+
+                            <span class="current">
+                                [[ #{paginator.page.indicator(${pageInfo.number+1},${pageInfo.totalPages})} ]]
+                            </span>
+
+                            <a th:if="${pageInfo.hasNext()}" th:href="@{|/catalogo/?p=${pageInfo.nextPageable().getPageNumber()+1}|}">
+                                [[ #{paginator.next} ]]
+                                
+                            </a>    
+
+                            <a th:if="${!pageInfo.isLast()}" th:href="@{|/catalogo/?p=${pageInfo.totalPages}|}">
+                                [[ #{paginator.last} ]] <i class="lni lni-shift-right"></i>
+                            </a>
+                        </div>
+
+                        <div class="pagination-info">
+                            <label>
+                                [[ #{paginator.page.size} ]]:
+                            </label>
+                            <span class="pagesize">[[${pageInfo.size} ]]</span>
+                            <span class="records-found">
+                                ([[ #{paginator.page.total(${pageInfo.totalElements})} ]])
+                            </span>
+                        </div>
+
+
+                        <div class="product-grid">
+
+                            <div th:each="articulo,loop : ${articulos}" class="card-layout__item clg-item" style="margin: 20px 0;">
+                                <div class="showcase">
+                                    <div class="showcase-banner">
+                                        <a th:href="@{|/catalogo/${articulo.codigo}|}">
+                                            <img th:src="@{/static/assets/images/store/{id}(id=${articulo.foto})}"
+                                                th:alt="${articulo.nombre}"
+                                                class="product-img">
+                                        </a>
+                                        <p class="showcase-badge">20%</p>
+                                        <div class="showcase-actions">
+                                            <button class="btn-action wishlist-add" th:id="${articulo.codigo}">
+                                                <ion-icon name="heart-outline"></ion-icon>
+                                            </button>
+                                            <button class="btn-action">
+                                                <ion-icon name="eye-outline"></ion-icon>
+                                            </button>
+                                            <button class="btn-action">
+                                                <ion-icon name="bag-add-outline"></ion-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="showcase-content">
+                                        [[ ${articulo.codigo} ]]
+                                        <a th:href="@{|/catalogo/${articulo.codigo}|}">
+                                            <h3 class="showcase-title">[[ ${articulo.nombre} ]]</h3>
+                                        </a>
+                                        <div class="showcase-rating">
+                                            <div class="showcase-rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                            </div>
+                                        </div>
+                                        <div class="price-box">
+                                            <del>711.5&euro;</del>
+                                            <p class="price">[[ ${articulo.pvp} ]]€</p>
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    </body>
+</html>

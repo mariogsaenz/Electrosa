@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/pr9">
+  <Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxIdle="30" maxWaitMillis="10000" maxtotal="100" name="jdbc/electrosa" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/electrosa?serverTimezone=GMT%2B2" username="root"/>
+</Context>
+

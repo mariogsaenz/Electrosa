@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa: Compras realizadas / Pedido</title>
+        <link rel="stylesheet" th:href="@{/static/assets/css/nuevosEstilos.css}"/>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+            <div class="product-container">
+
+            <div class="container">
+
+                <!--
+                          - SIDEBAR
+                    -->
+
+                <div class="sidebar  has-scrollbar sidebar-user-account" data-mobile-menu>
+
+
+                    <div class="product-showcase">
+
+                        <div class="showcase-wrapper" style="margin-top: 80px;">
+
+                            <div class="showcase-container">
+
+                                <div class="showcase">
+
+                                    <a href="/pr9/cliente/pedido" class="showcase-img-box">
+                                        <ion-icon name="cube" style="color: var(--sandy-brown);"></ion-icon>
+                                    </a>
+
+                                    <div class="showcase-content">
+
+                                        <a th:href="@{|/cliente/pedido|}">
+                                            <h4 class="showcase-title">Compras realizadas</h4>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                
+                                <div class="showcase">
+
+                                    <a href="/pr9/cliente/pedido/anulados" class="showcase-img-box">
+                                        <ion-icon name="cube" style="color: var(--salmon-pink);"></ion-icon>
+                                    </a>
+
+                                    <div class="showcase-content">
+
+                                        <a th:href="@{|/cliente/pedido/anulados|}">
+                                            <h4 class="showcase-title">Pedidos anulados</h4>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="showcase">
+
+                                    <a href="/pr9/cliente/datos" class="showcase-img-box">
+                                        <ion-icon name="person" style="color: var(--ocean-green);"></ion-icon>
+                                    </a>
+
+                                    <div class="showcase-content">
+
+                                        <a href="#">
+                                            <h4 class="showcase-title">Datos personales</h4>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                                <div class="showcase">
+                                    <a href="/pr9/cliente/favoritos" class="showcase-img-box">
+                                        <ion-icon name="heart-outline" style="color: var(--salmon-pink);"></ion-icon>
+                                    </a>
+
+                                    <div class="showcase-content">
+                                        <a href="#">
+                                            <h4 class="showcase-title">Favoritos</h4>
+                                        </a>
+
+                                    </div>
+                                </div> <!-- showcase -->
+
+
+                                <div class="showcase">
+                                    <a href="/pr9/logout" class="showcase-img-box">
+                                        <ion-icon name="exit" style="color: var(--onyx);"></ion-icon>
+                                    </a>
+                                    <div class="showcase-content">
+                                        <a th:href="@{|/auth/logout|}">
+                                            <h4 class="showcase-title">Cerrar sesión</h4>
+                                        </a>
+
+                                    </div>
+                                </div> <!-- showcase -->
+
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product-box">
+
+                    <!--
+                                - PRODUCT FEATURED
+                        -->
+
+                    <div class="product-featured">
+
+                        <h1 class="title">Pedido [[ ${pedidoAnulado.codigo} ]] anulado</h1>
+
+                        <div class="showcase2-wrapper">
+
+                            <div class="showcase2-container">
+                                <div class="datos-pedido">
+                                    <div>
+                                        <span class="etiqueta-fecha">Fecha Cierre: </span> [[ ${#dates.format(pedidoAnulado.fechacierre, 'dd/MM/yyyy')} ]]
+                                    </div>
+                                    <div>
+                                        <span class="etiqueta-fecha">Fecha anulación: </span> [[ ${#dates.format(pedidoAnulado.fechaanulacion, 'dd/MM/yyyy')} ]]
+                                    </div>
+                                </div>
+
+                                <div class="estado-pedido">
+                                    <p>
+                                        <span>Estado:</span>
+                                        <span style="color: red; font-weight: bold;">ANULADO</span>
+                                    </p>
+                                </div>
+
+                                <div class="tabla-pedido">
+                                    <table>
+                                        <thead>
+                                          <tr>
+                                            <th>Código</th>
+                                            <th>Artículo</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="linea : ${pedidoAnulado.lineas}">
+                                                <td th:text="${linea.articulo.codigo}">[[ ${linea.articulo.codigo} ]]</td>
+                                                <td>[[ ${linea.articulo.nombre} ]]</td>
+                                                <td>[[ ${linea.cantidad} ]]</td>
+                                                <td>[[ ${linea.articulo.pvp} ]]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            </div>
+        </main>
+    </body>
+</html>

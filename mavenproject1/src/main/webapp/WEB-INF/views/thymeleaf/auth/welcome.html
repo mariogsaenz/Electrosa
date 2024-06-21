@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>[[${contentName}]]</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+
+
+            <div class="product-container">
+
+                <div class="container">
+
+
+
+                    <div class="product-box">
+
+
+                        <!--
+                          - PRODUCT FEATURED
+                        -->
+
+                        <div class="product-featured">
+
+                            <h1 class="title">Área de clientes</h1>
+                            <form class="form-cultured"  th:action="@{/auth/register}" method="post">
+                                <div class="showcase-wrapper">
+
+                                    <div th:if="${clienteRegistrado != null}" >
+                                        Gracias por registrarse en Electrosa, [[ ${clienteRegistrado.nombre} ]].
+                                        En unos momentos recibirá un correo electrónico de confirmación del registro como nuevo cliente.
+                                    </div>
+                                    <div th:if="${clienteRegistrado == null}" >
+                                        Nada que mostrar aquí. Realiza los cambios oportunos para que en este caso se redirija al inicio de Electrosa.
+                                    </div>
+
+                                </div> <!-- showcase-wrapper -->
+                            </form>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="sidebar showcase-container sidebar-boxd">
+                        <div>
+                            <h3>¿Aún no tienes cuenta?</h3>
+                            <div class="line">
+                                <ion-icon name="people-circle-outline"></ion-icon> 
+                                <a th:href="@{/auth/register}">Crear cuenta</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+        </main>
+    </body>
+</html>

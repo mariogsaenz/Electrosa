@@ -1,0 +1,246 @@
+.copyright {
+    text-transform: none;
+}
+
+.footer-nav-link,
+.footer-nav-item .content {
+    text-transform: none;
+}
+
+.container h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #323232;
+}
+
+.banner-content {
+    background-color: rgb(255 250 250 / 85%);
+}
+
+
+.product-grid .showcase-banner {
+    text-align: center;
+}
+
+.product-grid .product-img {
+    width: initial ;
+    height: initial;
+    min-height: 150px;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+
+.blog-banner img {
+    height: 160px;
+}
+
+ion-icon {
+    pointer-events: none;
+}
+
+.sidebar-user-account ion-icon {
+    font-size: 48px;
+}
+
+.sidebar-boxd ion-icon {
+    display: inline-block;
+}
+
+.header-logo span {
+    font-family: Poppins, sans-serif;
+    color: var(--eerie-black);
+    font-weight: 700;
+    font-size: 46px;
+}
+
+.block {
+    display: block;
+}
+
+
+.paginator-wrapper {
+    text-align: center;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
+.paginator-wrapper a {
+    display: inline;
+    color: var(--onyx);
+    padding: 0 10px;
+}
+
+.paginator-wrapper a:hover {
+    text-decoration: underline;
+    color: var(--salmon-pink);
+}
+
+.paginator-wrapper .current {
+    padding: 0 50px;
+    color: #888;
+}
+
+.pagination-info {
+    text-align: right;
+}
+
+.pagination-info label {
+    color: var(--sonic-silver);
+}
+
+.pagination-info .pagesize {
+    color: var(--eerie-black);
+}
+
+.pagination-info .pagesize {
+    color: var(--eerie-black);
+}
+
+
+.breadcrumb {
+    color: var(--sonic-silver);
+    font-size: .9em;
+}
+
+.breadcrumb a {
+    color: var(--onyx);
+    transition: var(--transition-timing);
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+    color: var(--salmon-pink);
+}
+
+
+.badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 4px;
+    color: white;
+    background-color: var(--sonic-silver);
+    margin: 4px 0;
+}
+
+.badge-green {
+    color: white;
+    background-color: #217d55;
+}
+
+.badge-yellow {
+    color: #141414;
+    background-color: #fc3;
+}
+
+.btn-primary {
+    background: var(--salmon-pink);
+    padding: 8px 15px;
+    color: var(--white);
+    font-weight: var(--fs-9);
+    font-weight: var(--weight-700);
+    text-transform: uppercase;
+    -webkit-border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-md);
+    margin-bottom: 15px;
+    -webkit-transition: var(--transition-timing);
+    -o-transition: var(--transition-timing);
+    transition: var(--transition-timing);
+}
+
+
+.btn-primary:hover {
+    background: var(--eerie-black);
+    color: var(--white);
+}
+
+
+.form-cultured fieldset {
+    border: none;
+}
+
+.form-cultured legend {
+    font-size: 24px;
+    font-weight: bold;
+    color: #323232;
+    text-transform: uppercase;
+}
+
+
+
+.form-cultured label {
+    color: var(--onyx);
+    font-weight: var(--weight-600);
+}
+
+.form-cultured .control {
+    margin: 10px 0;
+}
+
+.form-cultured  input {
+    color: var(--onyx);
+    padding: 6px 12px;
+    border: 1px solid var(--cultured);
+    -webkit-border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-sm);
+    width: auto;
+}
+
+.form-cultured select {
+    display: block;
+    font: inherit;
+}
+
+.form-cultured a {
+    color: var(--salmon-pink);
+}
+
+
+.sidebar-boxd {
+    border: 1px solid var(--cultured);
+    border-radius: var(--border-radius-md);
+    padding: 10px;
+    margin-top: 118px;
+    color: var(--sonic-silver);
+    font-size: var(--fs-7);
+    font-weight: var(--weight-300);
+}
+
+.sidebar-boxd ion-icon {
+    display: inline-block;
+}
+
+.sidebar-boxd a {
+    color: var(--salmon-pink);
+    font-weight: 700;
+}
+
+
+.sidebar-boxd .line {
+    margin: 14px 0;
+}
+
+
+.header-top .username {
+    color: var(--sonic-silver);
+    font-size: var(--fs-8);
+    text-transform: uppercase;
+}
+
+.primary-link {
+    color: var(--sonic-silver);
+}
+
+.primary-link:hover {
+    text-decoration: underline;
+}
+
+.header-top .primary-link {
+    color: var(--sonic-silver);
+    font-size: var(--fs-8);
+    text-transform: uppercase;
+}
+
+.product-featured .uppercase {
+    text-transform: uppercase;
+}

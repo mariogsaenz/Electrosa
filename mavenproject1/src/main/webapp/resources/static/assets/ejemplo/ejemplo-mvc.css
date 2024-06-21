@@ -1,0 +1,135 @@
+:root {
+
+    --spanish-gray: hsl(0, 0%, 60%);
+    --sonic-silver: hsl(0, 0%, 47%);
+    --eerie-black: hsl(0, 0%, 13%);
+    --salmon-pink: hsl(353, 100%, 78%);
+    --sandy-brown: hsl(29, 90%, 65%);
+    --bittersweet: hsl(0, 100%, 70%);
+    --ocean-green: hsl(152, 51%, 52%);
+    --davys-gray: hsl(0, 0%, 33%);
+    --cultured: hsl(0, 0%, 93%);
+    --white: hsl(0, 100%, 100%);
+    --onyx: hsl(0, 0%, 27%);
+    --catania-green: hsl(162, 15.6%, 42.75%)
+}
+
+
+html {
+    font-family: "Poppins", sans-serif;
+    font-size: 62.5%;
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    font-size: 1.6rem;
+    border-top: solid 10px var(--catania-green);
+}
+
+footer {
+    border-top:solid 3px var(--catania-green);
+    margin-top: 50px;
+    padding-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.store-branding-logo {
+    font-size: 46px;
+}
+
+
+a {
+    text-decoration: none;
+    color: #5C7E74;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 40px 20px;
+}
+
+.article-col6 {
+    flex-basis: 49%;
+}
+
+.article-image-wrapper {
+    text-align: center;
+    padding: 30px 20px;
+
+}
+
+.article-image-wrapper img {
+    overflow: clip;
+    width: 100%;
+    object-fit: cover;
+}
+
+.article-details-w {
+    margin-top: 80px;
+}
+
+.article-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.article-price-w {
+    margin: 20px 0;
+}
+
+.article-price {
+    font-size: 4px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 4px;
+    color: white;
+    background-color: var(--sonic-silver);
+}
+
+.badge-green {
+    color: white;
+    background-color: #217d55;
+}
+
+.badge-yellow {
+    color: #141414;
+    background-color: #fc3;
+}
+
+.text-muted {
+    color: var(--sonic-silver);
+}
+
+.btn-add {
+    width: 100%;
+    background: var(--salmon-pink);
+    font-weight: 700;
+    color: var(--white);
+    width: max-content;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: solid 1px var(--salmon-pink);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
+}
+
+.btn-add:hover {
+    background: var(--eerie-black);
+    border-color: var(--sonic-silver);
+}

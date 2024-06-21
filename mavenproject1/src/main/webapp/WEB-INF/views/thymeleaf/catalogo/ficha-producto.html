@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa: [[ ${articulo.nombre} ]]</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+
+            <div class="product-container">
+            <div class="container">      
+               
+                <div class="product-box">
+
+
+                    <!--
+                          - PRODUCT FEATURED
+                        -->
+
+                    <div class="product-featured">
+                        <div class="breadcrumb">
+                            <a href="/pr9/catalogo">Catálogo</a> /
+                            <a href="#">[[ ${articulo.nombre} ]]</a>
+                        </div>
+
+                        <h1 class="title">[[ ${articulo.nombre} ]]</h1>
+                        <div class="showcase-wrapper ">
+
+                            <div class="showcase-container">
+                                <div class="showcase">
+
+                                    <div class="showcase-banner">
+
+                                        <img th:src="@{/static/assets/images/store/{id}(id=${articulo.foto})}"
+                                                    th:alt="${articulo.nombre}"
+                                                    class="showcase-img">
+
+                                    </div>
+
+                                    <div class="showcase-content">
+                                        <div class="showcase-rating">
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star-outline"></ion-icon>
+                                            <ion-icon name="star-outline"></ion-icon>
+                                        </div>
+
+                                        <h2 class="showcase-title">[[ ${articulo.nombre} ]]</h2>
+
+                                        <p class="showcase-desc">
+                                            [[ ${articulo.descripcion} ]]
+                                        </p>
+
+                                        <div class="price-box">
+                                            <p class="price" id="precioDescuento">[[ ${articulo.pvp} ]]€</p>
+
+                                            <del id="precioOriginal"></del>
+                                        </div>
+                                        
+                                        <p id="mensajeOferta" style="display: none;" class="countdown-desc">Al comprar <span id="cantComprada"></span> pagas <span id="cantPagada"></span></p>
+                                         
+                                        <form th:action="@{/cliente/cesta}" method="post">
+                                            <input type="hidden" name="codigoArticulo" th:value="${articulo.codigo}"/>
+                                            <button type="submit" class="add-cart-btn">Añadir al carrito</button> 
+                                        </form>
+                                        
+                                        <div class="showcase-status">
+                                            <div class="wrapper">
+                                                <p>Vendido hoy: <span id="soldToday">0</span></p>
+                                                <p>
+                                                    Disponible: <b>20</b>
+                                                </p>
+                                            </div>
+
+                                            <div class="showcase-status-bar"></div>
+                                        </div>
+
+                                        <div id="oferta-flash" style="display: none;">                                            
+                                            <div class="countdown-box">
+                                                <a id="mensajeTiempo" style="display: none;" class="countdown-desc">LA OFERTA TERMINA EN</a>
+                                                <div class="countdown">    
+                                                    <div class="countdown-content">
+                                                        <p id="dias" class="display-number"></p>
+                                                        <p id="mensajeDIA" style="display: none;">días</p>
+                                                    </div>
+                                                    <div class="countdown-content">
+                                                        <p id="horas" class="display-number"></p>
+                                                        <p id="mensajeHORA" style="display: none;">horas</p>
+                                                    </div>
+                                                    <div class="countdown-content">
+                                                        <p id="min" class="display-number"></p>
+                                                        <p id="mensajeMIN" style="display: none;">mins</p>
+                                                    </div>
+                                                    <div class="countdown-content">
+                                                        <p id="seg" class="display-number"></p>
+                                                        <p id="mensajeSEG" style="display: none;">segs</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="sidebar showcase-container sidebar-boxd">
+                    <div>
+                        <span class="badge badge-green">
+                            Eficiencia Energética E
+                        </span>
+                    </div>
+                    <div class="line">
+                        <ion-icon name="stopwatch-outline"></ion-icon>
+                        Entrega en 3 a 4 días laborables
+                    </div>
+                    <div class="line">
+                        <ion-icon name="cube-outline"></ion-icon>
+                        Gastos de envío 0&euro;
+                    </div>
+                    <div class="line">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        Artículo con 100 días de <a href="#" class="primary-link">prueba y devolución gratuita</a>.
+                    </div>
+                    <div class="line">
+                        <ion-icon name="earth-outline"></ion-icon>
+                        Recogida y reciclaje gratuito
+                    </div>
+                    <div class="line">
+                        <ion-icon name="gift-outline" ></ion-icon>
+                        <a class="primary-link" id="botonOferta" >Descubrir oferta</a>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+            </section>
+        </main>
+        <th:block th:fragment="body-bottom">
+            <script th:src="@{/static/assets/js/practica9_stock.js}"></script>
+            <script th:src="@{/static/assets/js/practica9_oferta.js}"></script>
+        </th:block>
+    </body>
+</html>

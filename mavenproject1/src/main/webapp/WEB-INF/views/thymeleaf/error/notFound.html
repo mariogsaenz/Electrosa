@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa 404</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+            <div class="product-container">
+                <div class="container">
+                    <div class="product-box">
+                        <!--
+                          - PRODUCT FEATURED
+                        -->
+                        <div class="product-featured">
+                            <h1 class="title">Ups, algo ha ido mal</h1>
+                            <form class="form-cultured"  th:action="@{/auth/register}" method="post">
+                                <div class="showcase-wrapper">
+
+                                    [[ ${exception.message} ]]
+
+
+                                </div> <!-- showcase-wrapper -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="sidebar showcase-container sidebar-boxd">
+                        <div>
+                            <div class="line">
+                                <ion-icon name="close-outline"></ion-icon> 
+                                <a th:href="@{/}">Salir de aquí</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

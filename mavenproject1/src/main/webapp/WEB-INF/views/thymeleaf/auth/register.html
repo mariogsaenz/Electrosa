@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa: Registro</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+
+
+            <div class="product-container">
+
+                <div class="container">
+
+
+                    <div class="product-box">
+
+
+                        <!--
+                          - PRODUCT FEATURED
+                        -->
+
+                        <div class="product-featured">
+
+                            <h1 class="title">Área de clientes</h1>
+
+                            <th:block th:if="${not #lists.isEmpty(messages)}">
+                                <div style="color: #842029; background-color: #f8d7da;
+                                     border-color: #f5c2c7;
+                                     padding: 1rem 1rem;
+                                     margin-bottom: 1rem;
+                                     border: 1px solid transparent;
+                                     border-top-color: transparent;
+                                     border-right-color: transparent;
+                                     border-bottom-color: transparent;
+                                     border-left-color: transparent;
+                                     border-radius: .25rem;">
+                                    <ul>
+                                        <li th:each="message : ${messages}">
+                                            [[ ${message} ]]
+                                        </li>
+                                    </ul>
+                                </div>
+                            </th:block>
+
+                            <form class="form-cultured"  th:action="@{/auth/register}" method="post">
+                                <div class="showcase-wrapper">
+
+                                    <fieldset>
+                                        <legend>Datos del cliente</legend>                                    
+
+                                        <div class="control">
+                                            <label>Email:</label>
+                                            <input type="email" name="email" required maxlength="255"/>
+                                        </div>
+
+                                        <div class="control">
+                                            <label>Nombre de usuario:</label>
+                                            <input type="text" name="username" required maxlength="50"/>
+                                        </div>
+                                        <div class="control">
+                                            <label>Contraseña:</label>
+                                            <input type="password" id="password1" name="password1" required maxlength="50"/>
+                                            <ion-icon name="eye"></ion-icon>
+                                            <a href="#" class="mostrar-contraseña" data-inputid="password1">Mostrar contraseña</a>
+                                        </div>
+                                        <div class="control">
+                                            <label>Contraseña:</label>
+                                            <input type="password" id="password2" name="password2" required maxlength="50"/>
+                                            <ion-icon name="eye"></ion-icon>
+                                            <a href="#" class="mostrar-contraseña" data-inputid="password2">Mostrar contraseña</a>
+                                        </div>
+
+                                        <div class="control">
+                                            <input type="checkbox"
+                                                   id="register-conditions" 
+                                                   name="accept-conditions"
+                                                   style="width: auto; display: inline-block"
+                                                   />
+                                            <label for="register-conditions">He leído y acepto la <a href="#">política de privacidad</a></label>
+                                        </div>
+
+
+                                        <div style="margin-top: 40px; text-align: right;">
+                                            <button type="submit" class="btn-primary" style="display: inline">Crear cuenta</button>
+                                        </div>
+                                    </fieldset>
+                                </div> <!-- showcase-wrapper -->
+                            </form>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="sidebar showcase-container sidebar-boxd">
+                        <div>
+                            <h3>Más información</h3>
+                            <div class="line">
+                                <ion-icon name="bookmark-outline"></ion-icon> 
+                                <a href="#">Protección de datos</a>
+                            </div>
+                            <div class="line">
+                                <ion-icon name="bookmark-outline"></ion-icon> 
+                                <a href="#">Términos de uso</a>
+                            </div>
+                            <div class="line">
+                                <ion-icon name="bookmark-outline"></ion-icon> 
+                                <a href="#">Aviso legal</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+    </body>
+</html>

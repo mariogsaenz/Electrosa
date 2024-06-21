@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Catálogo</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+
+            <h2>Catálogo de productos </h2>
+            <section class="card-layout">
+
+                <div th:each="articulo,loop : ${articulos}" 
+                     class="card-layout__item clg-item"
+                     style="margin: 20px 0;">
+                    <div style="font-weight: bold; color:#CCC; font-size: .8em;">
+                        [[ ${articulo.codigo} ]]
+                    </div>
+
+                    <div class="clg-item__title">
+                        <a th:href="@{|/ejemplo/catalogo/${articulo.codigo}|}">
+                            [[ ${articulo.nombre} ]]
+                        </a>
+
+                    </div>
+                    <div class='clg-item__price <%= i % 4 == 0?"article-offer-banner":""%>'>
+                        [[ ${articulo.pvp} ]]€
+                    </div>
+                </div> <!-- #clg-item -->
+
+            </section>
+
+        </main>
+    </body>
+</html>

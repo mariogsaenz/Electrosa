@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa</title>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+            
+            <div class="banner">
+
+            <div class="container">
+
+                <div class="slider-container has-scrollbar">
+
+                    <div class="slider-item">
+
+                        <img th:src="@{/static/assets/images/murat-demircan-NcCMsdDJXIY-unsplash.jpg}" class="banner-img">
+
+                        <div class="banner-content">
+
+                            <p class="banner-subtitle">Rebajas</p>
+
+                            <h2 class="banner-title">Ofertas en stock</h2>
+
+                            <p class="banner-text">
+                                desde <b>29</b>.99 &euro;
+                            </p>
+
+                            <a href="/pr9/catalogo" class="banner-btn">Ver productos</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+
+
+            <!--
+                      - PRODUCT
+                -->
+            <div class="product-container">
+
+                <div class="container">
+
+
+                    <!--
+                              - SIDEBAR
+                        -->
+
+                    <div class="sidebar  has-scrollbar" data-mobile-menu>
+
+                        <div class="product-showcase">
+
+                            <h3 class="showcase-heading">Más vendidos</h3>
+
+                            <div class="showcase-wrapper">
+
+                                <div class="showcase-container">
+
+                                    <div class="showcase">
+
+                                        <a href="#" class="showcase-img-box">
+                                            <img th:src="@{/static/assets/images/store/Lavadora/lavadora1011.jpg}" width="75" height="75" class="showcase-img">
+                                        </a>
+
+                                        <div class="showcase-content">
+
+                                            <a href="#">
+                                                <h4 class="showcase-title">Beko Secadora de CondesaciÃ³n</h4>
+                                            </a>
+
+                                            <div class="showcase-rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                            </div>
+
+                                            <div class="price-box">
+                                                <del>340&euro;</del>
+                                                <p class="price">320&euro;</p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="showcase">
+
+                                        <a href="#" class="showcase-img-box">
+                                            <img th:src="@{/static/assets/images/store/Lavavajillas/lavavajillas156.jpg}"
+                                                class="showcase-img" width="75" height="75">
+                                        </a>
+
+                                        <div class="showcase-content">
+
+                                            <a href="#">
+                                                <h4 class="showcase-title">Balay 3VS6030IA Lavavajillas</h4>
+                                            </a>
+                                            <div class="showcase-rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star-half-outline"></ion-icon>
+                                            </div>
+
+                                            <div class="price-box">
+                                                <del>170&euro;</del>
+                                                <p class="price">155&euro;</p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="showcase">
+
+                                        <a href="#" class="showcase-img-box">
+                                            <img th:src="@{/static/assets/images/store/Horno/horno156.jpg}" class="showcase-img"
+                                                width="75" height="75">
+                                        </a>
+
+                                        <div class="showcase-content">
+
+                                            <a href="#">
+                                                <h4 class="showcase-title">Teka Pirolí­tico Horno Multifunción</h4>
+                                            </a>
+                                            <div class="showcase-rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star-half-outline"></ion-icon>
+                                            </div>
+
+                                            <div class="price-box">
+                                                <del>50&euro;</del>
+                                                <p class="price">30&euro;</p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="showcase">
+
+                                        <a href="#" class="showcase-img-box">
+                                            <img th:src="@{/static/assets/images/store/Horno/horno153.jpg}" class="showcase-img"
+                                                width="75" height="75">
+                                        </a>
+
+                                        <div class="showcase-content">
+
+                                            <a href="#">
+                                                <h4 class="showcase-title">Bosch Horno MultifunciÃ³n</h4>
+                                            </a>
+                                            <div class="showcase-rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                            </div>
+
+                                            <div class="price-box">
+                                                <del>150&euro;</del>
+                                                <p class="price">120&euro;</p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="product-box">
+
+                        <!--
+                                    - PRODUCT FEATURED
+                            -->
+
+                        <div class="product-featured">
+
+                            <h2 class="title uppercase">Producto destacado</h2>
+
+                            <div class="showcase-wrapper">
+
+                                <div class="showcase-container">
+
+                                    <div class="showcase" style="align-items: flex-start;">
+
+                                        <div class="showcase-banner">
+                                            <img th:src="@{/static/assets/images/planetcare-5cpBWEl6y6c-unsplash.jpg}"
+                                                class="showcase-img">
+                                        </div>
+
+                                        <div class="showcase-content">
+                                            <a href="#">
+                                                <h3 class="showcase-title">Balay 3TS994XD Lavadora carga frontal</h3>
+                                            </a>
+
+                                            <p class="showcase-desc">
+                                                Poner la lavadora es ahora más cómodo que nunca. Rellenas el cajetí­n con 1
+                                                litro de detergente y 0,5 litros de suavizante ¡y te olvidas durante más de
+                                                un mes! La lavadora administra el detergente justo en cada ciclo, evitando
+                                                la habitual sobredosificación.
+                                            </p>
+                                            <p class="showcase-desc">
+                                                De este modo ahorras agua ya que, al no haber
+                                                exceso de espuma, se reduce el número de aclarados. Además, evitas el riesgo
+                                                de alergias, porque no quedan residuos de producto en la ropa. Y por
+                                                supuesto, ahorras trabajo y ganas comodidad.
+                                            </p>
+
+                                            <div class="price-box">
+                                                <p class="price">350&euro;</p>
+
+                                                <del>410&euro;</del>
+                                            </div>
+
+                                            <a class="add-cart-btn block" href="/pr9/catalogo">Comprar ahora</a>
+
+
+
+                                            <div class="countdown-box">
+
+                                                <p class="countdown-desc">
+                                                    La oferta termina en
+                                                </p>
+
+                                                <div class="countdown">
+
+                                                    <div class="countdown-content">
+
+                                                        <p class="display-number">3</p>
+
+                                                        <p class="display-text">dí­as</p>
+
+                                                    </div>
+
+                                                    <div class="countdown-content">
+                                                        <p class="display-number">21</p>
+                                                        <p class="display-text">horas</p>
+                                                    </div>
+
+                                                    <div class="countdown-content">
+                                                        <p class="display-number">59</p>
+                                                        <p class="display-text">min</p>
+                                                    </div>
+
+                                                    <div class="countdown-content">
+                                                        <p class="display-number">00</p>
+                                                        <p class="display-text">seg</p>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!--
+                      - BLOG
+                -->
+
+            <div class="blog">
+
+                <div class="container">
+
+                    <div class="blog-container has-scrollbar">
+
+                        <div class="blog-card">
+
+                            <a href="/pr9/blog/paw-2023">
+                                <img th:src="@{/static/assets/images/freepik/group-friends-with-electronic-devices.jpg}" width="300"
+                                    class="blog-banner">
+                            </a>
+
+                            <div class="blog-content">
+                                <div class="blog-category">PAW</div>
+                                <a href="/pr9/blog/paw-2023">
+                                    <h3 class="blog-title">Electrosa con los estudiantes de la Universidad desde 2003</h3>
+                                </a>
+
+                                <p class="blog-meta">
+                                    Por <cite>Francisco</cite> /
+                                    <time datetime="2023-10-01">1 Octubre, 2023</time>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="blog-card">
+
+                            <a href="/pr9/blog/tendencias-decorativas">
+                                <img th:src="@{/static/assets/images/blog/jason-briscoe-GliaHAJ3_5A-unsplash.jpg}"
+                                    class="blog-banner" width="300">
+                            </a>
+
+                            <div class="blog-content">
+                                <div class="blog-category">Tendencias</div>
+                                <h3>
+                                    <a href="/pr9/blog/tendencias-decorativas" class="blog-title">Tendencias decorativas que
+                                        no pasan de moda</a>
+                                </h3>
+
+                                <p class="blog-meta">
+                                    Por <cite>Audrey</cite> /
+                                    <time datetime="2023-10-01">1 Octubre, 2023</time>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="blog-card">
+
+                            <a href="/pr9/blog/consejos-renovar-casa">
+                                <img th:src="@{/static/assets/images/blog/kam-idris-Ot2iTXgC6fY-unsplash.jpg}" class="blog-banner"
+                                    width="300">
+                            </a>
+
+                            <div class="blog-content">
+                                <div class="blog-category">Consejos</div>
+                                <h3>
+                                    <a href="/pr9/blog/consejos-renovar-casa" class="blog-title">5 consejos clave para
+                                        renovar tu casa</a>
+                                </h3>
+
+                                <p class="blog-meta">
+                                    Por <cite>Carol</cite> /
+                                    <time datetime="2023-10-01">1 Octubre, 2023</time>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="blog-card">
+
+                            <a href="/pr9/blog/semana-verde">
+                                <img th:src="@{/static/assets/images/blog-4.jpg}" class="blog-banner" width="300">
+                            </a>
+
+                            <div class="blog-content">
+
+                                <div class="blog-category">Promociones</div>
+                                <h3>
+                                    <a href="/pr9/blog/semana-verde" class="blog-title">Semana verde del ahorro en
+                                        lavadoras</a>
+                                </h3>
+
+                                <p class="blog-meta">
+                                    Por <cite>John</cite> /
+                                    <time datetime="2023-10-01">1 Octubre, 2023</time>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </main>
+    </body>
+</html>

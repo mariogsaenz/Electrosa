@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="cliente-change-pk-uuid" author="francisco">
+        <modifyDataType  
+            tableName="cliente"
+            columnName="CODIGO"
+            newDataType="varchar(40)"
+        />
+    </changeSet>
+    
+    <changeSet id="cliente-change-pk-uuid53" author="francisco">
+        <modifyDataType  
+            tableName="cliente"
+            columnName="CODIGO"
+            newDataType="varchar(40)"
+        />
+    </changeSet>
+    
+    <changeSet id="cliente-change-cliente" author="francisco">
+        <modifyDataType  
+            tableName="cliente"
+            columnName="CALLE"
+            newDataType="varchar(200)"
+        />
+        <modifyDataType  
+            tableName="cliente"
+            columnName="CIUDAD"
+            newDataType="varchar(80)"
+        />
+    </changeSet>
+    
+    <changeSet id="cliente-add-sex" author="francisco">
+        <addColumn tableName="cliente">
+            <column name="sexo"
+                    type="varchar(10)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="pedido-change-pk-uuid" author="francisco">
+        <modifyDataType  
+            tableName="pedido"
+            columnName="CODIGO"
+            newDataType="varchar(40)"
+        />
+    </changeSet>
+    
+    <changeSet id="lineaenrealizacion-change-pk-uuid" author="francisco">
+        <modifyDataType  
+            tableName="lineaenrealizacion"
+            columnName="CODIGO"
+            newDataType="varchar(40)"
+        />
+    </changeSet>
+    
+    <changeSet id="lineaenrealizacion-change-fk-uuid" author="francisco">
+        <modifyDataType  
+            tableName="lineaenrealizacion"
+            columnName="CODIGOPEDIDO"
+            newDataType="varchar(40)"
+        />
+    </changeSet>
+    <changeSet id="linea-change-fk-uuid" author="francisco">
+        <modifyDataType  
+            tableName="linea"
+            columnName="CODIGOPEDIDO"
+            newDataType="varchar(40)"
+        />
+    </changeSet>
+    
+    <changeSet id="cliente-add-puntos-fidelidad" author="francisco">
+        <addColumn tableName="cliente">
+            <column name="puntos_fidelidad"
+                    type="int">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+        
+    <changeSet id="cliente-add-avatar" author="francisco">
+        <addColumn tableName="cliente">
+            <column name="avatar_imagen"
+                    type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="cliente-add-gravatar" author="francisco">
+        <addColumn tableName="cliente">
+            <column name="gravatar_hashid"
+                    type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="pedidoenrealizacion-change-pk-uuid2" author="francisco">
+        <modifyDataType  
+            tableName="pedidoenrealizacion"
+            columnName="CODIGO"
+            newDataType="varchar(40)"
+        />
+    </changeSet>
+
+    <changeSet id="pedidoenrealizacion-change-fk-cliente" author="francisco">
+        <modifyDataType  
+            tableName="pedidoenrealizacion"
+            columnName="CODIGOCLIENTE"
+            newDataType="varchar(40)"
+        />
+    </changeSet>
+    
+</databaseChangeLog>

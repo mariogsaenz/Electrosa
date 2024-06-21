@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html class="h-100" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electrosa - PAW</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/logo/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/logo/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/logo/favicon-16x16.png" />
+    
+    <link rel="stylesheet" th:href="@{/static/assets/ejemplo/style.css}" />
+    <link rel="stylesheet" th:href="@{/static/assets/ejemplo/custom.css}" />
+    <link rel="stylesheet" th:href="@{/static/assets/css/practica8.css}"/>
+    <link rel="stylesheet" th:href="@{/static/assets/css/toast.css}"/>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="overlay" data-overlay></div>
+    
+    <div class="notification-toast" 
+        data-toast id="notification-toast" 
+        th:data-url="@{/api/compras/ultimo-articulo}">
+        <button class="toast-close-btn" data-toast-close>
+            <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <div class="toast-banner">
+            <img th:src="@{/static/assets/images/happybag.png}" 
+                alt="Compra reciente">
+        </div>
+        <div class="toast-detail">
+            <p class="toast-message">[[ #{toast.message} ]]</p>
+            <p class="toast-title" id="toast-title"></p>
+            <p class="toast-meta">[[ #{toast.meta} ]]</p>
+        </div>
+    </div> <!--#notification-toast -->
+    
+    <!--
+      - HEADER
+-->
+
+    <header>
+        <div class="header-top">
+
+            <div class="container">
+
+                <ul class="header-social-container">
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-twitter"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-linkedin"></ion-icon>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="header-alert-news">
+                    <p><strong>25% [[ #{header.alert.uno} ]]</strong> [[ #{header.alert.dos} ]]</p>
+                </div>
+
+                <div class="header-top-actions">
+
+                    <select name="currency">
+                        <option value="eur">Euro</option>
+                        <option value="usd">Dollar</option>
+                    </select>
+
+                    <form>
+                        <select name="lang" id="language-selector">
+                            <option value="es" th:text="#{lang.es}" th:selected="${#strings.equals(#locale.toString(), 'es')}"></option>
+                            <option value="en" th:text="#{lang.en}" th:selected="${#strings.equals(#locale.toString(), 'en')}"></option>
+                            <option value="fr" th:text="#{lang.fr}" th:selected="${#strings.equals(#locale.toString(), 'fr')}"></option>
+                            <option value="de" th:text="#{lang.de}" th:selected="${#strings.equals(#locale.toString(), 'de')}"></option>
+                        </select>
+                    </form>
+
+
+
+                    <div class="username" id="nombreClienteActivo">
+                        cliente1
+                    </div>
+                    <div class="primary-link">
+                        <a href="/pr9/auth/logout" style="color: var(--salmon-pink); font-weight: bold;">Salir</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="header-main">
+
+            <div class="container">
+
+                <a href="/pr9/" class="header-logo">
+                    <span>ELECTROSA</span>
+                </a>
+
+                <div class="header-search-container">
+
+                    <input type="search" name="search" class="search-field" th:placeholder=#{search.entireSite}>
+
+                    <button class="search-btn">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </button>
+
+                </div>
+
+                <div class="header-user-actions">
+
+                    <a th:href="@{/cliente/cuenta}" class="action-btn">
+                        <th:block th:if="${session.clienteAvatar == null or session.clienteAvatar.isDefault()}">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </th:block>
+                        <th:block th:unless="${session.clienteAvatar == null or session.clienteAvatar.isDefault()}">
+                            <th:block th:if="${session.clienteAvatar.isRemoteURL()}">
+                                <img th:src="${session.clienteAvatar.imageSource}"
+                                        style="border-radius: 50%; height: 36px;"
+                                        />
+                            </th:block>
+                            <th:block th:if="${not session.clienteAvatar.isRemoteURL()}">
+                                <img th:src="@{/static/assets/avatar/{image}(image=${session.clienteAvatar.imageSource})}"
+                                        style="border-radius: 50%; height: 36px;"
+                                        />
+                            </th:block>
+                        </th:block>
+                    </a>
+
+                    <a th:href="@{/cliente/favoritos}" id="ver-favoritos" class="action-btn" title="Lista de deseos">
+                        <ion-icon name="heart-outline" id="iconoCora"></ion-icon>
+                        <span class="count" id="favoritos-count"></span>
+                    </a>
+
+                    <a th:href="@{/cliente/cesta}" class="action-btn" title="Cesta de la compra">
+                        <ion-icon name="bag-handle-outline"></ion-icon>
+                        <span th:if="${session.cesta != null}" class="count">
+                            [[ ${#lists.size(session.cesta?.lineas)} ]]
+                        </span>
+                        <span th:if="${session.cesta == null}" class="count">
+                            0
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <nav class="desktop-navigation-menu">
+
+            <div class="container">
+
+                <ul class="desktop-menu-category-list">
+
+                    <li class="menu-category">
+                        <a href="/pr9/catalogo" class="menu-title block">[[ #{menu.category.title} ]]</a>
+                    </li>
+
+                    <li class="menu-category">
+                        <a href="/catalogo/?family=aspiradores" class="menu-title">[[ #{menu.category.aspirator} ]]</a>
+                    </li>
+
+                    <li class="menu-category">
+                        <a href="/catalogo/?family=frigorificos" class="menu-title">[[ #{menu.category.fridge} ]]</a>
+                    </li>
+
+                    <li class="menu-category">
+                        <a href="/catalogo/?family=lavadoras" class="menu-title">[[ #{menu.category.washingmachine} ]]</a>
+
+                    </li>
+
+                    <li class="menu-category">
+                        <a href="/catalogo/?family=cocinas" class="menu-title">[[ #{menu.category.stove} ]]</a>
+                    </li>
+
+                    <li class="menu-category">
+                        <a href="/catalogo/?family=hornos" class="menu-title">[[ #{menu.category.oven} ]]</a>
+                    </li>
+
+
+                    <li class="menu-category">
+                        <a href="/blog/" class="menu-title">[[ #{menu.category.blog} ]]</a>
+                    </li>
+
+                    <li class="menu-category">
+                        <a href="#" class="menu-title">[[ #{menu.category.sales} ]]</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <div class="mobile-bottom-navigation">
+
+            <button class="action-btn" data-mobile-menu-open-btn>
+                <ion-icon name="menu-outline"></ion-icon>
+            </button>
+
+            <button class="action-btn">
+                <ion-icon name="bag-handle-outline"></ion-icon>
+
+                <span class="count">0</span>
+            </button>
+
+            <button class="action-btn">
+                <ion-icon name="home-outline"></ion-icon>
+            </button>
+
+            <button class="action-btn">
+                <ion-icon name="heart-outline"></ion-icon>
+
+                <span class="count">0</span>
+            </button>
+
+            <button class="action-btn" data-mobile-menu-open-btn>
+                <ion-icon name="grid-outline"></ion-icon>
+            </button>
+
+        </div>
+
+        <nav class="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
+
+            <div class="menu-top">
+                <h2 class="menu-title">Menu</h2>
+
+                <button class="menu-close-btn" data-mobile-menu-close-btn>
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+            </div>
+
+
+            <ul class="mobile-menu-category-list">
+
+                <li class="menu-category">
+                    <a href="#" class="menu-title">[[ #{menu.category.title} ]]</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">[[ #{menu.category.aspirator} ]]</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">[[ #{menu.category.fridge} ]]</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">[[ #{menu.category.washingmachine} ]]</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">[[ #{menu.category.blog} ]]</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">[[ #{menu.category.sales} ]]</a>
+                </li>
+
+
+            </ul>
+
+            <div class="menu-bottom">
+
+                <ul class="menu-category-list">
+
+                    <li class="menu-category">
+
+                        <button class="accordion-menu" data-accordion-btn>
+                            <p class="menu-title">Language</p>
+
+                            <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+                        </button>
+
+                        <ul class="submenu-category-list" data-accordion>
+
+                            <li class="submenu-category">
+                                <a href="#" class="submenu-title">English</a>
+                            </li>
+
+                            <li class="submenu-category">
+                                <a href="#" class="submenu-title">Espa&ntilde;ol</a>
+                            </li>
+
+                            <li class="submenu-category">
+                                <a href="#" class="submenu-title">Fren&ccedil;h</a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="menu-category">
+                        <button class="accordion-menu" data-accordion-btn>
+                            <p class="menu-title">Currency</p>
+                            <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+                        </button>
+
+                        <ul class="submenu-category-list" data-accordion>
+                            <li class="submenu-category">
+                                <a href="#" class="submenu-title">USD &dollar;</a>
+                            </li>
+
+                            <li class="submenu-category">
+                                <a href="#" class="submenu-title">EUR &euro;</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <ul class="menu-social-container">
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-twitter"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="social-link">
+                            <ion-icon name="logo-linkedin"></ion-icon>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+
+    <!--
+              - MAIN
+        -->
+
+        <main layout:fragment="main-content"></main>
+
+
+
+    <!--
+      - FOOTER
+-->
+
+    <footer>
+
+        <div class="footer-category" style="display: none;">
+
+            <div class="container">
+
+                <h2 class="footer-category-title">Brand directory</h2>
+
+                <div class="footer-category-box">
+
+                    <h3 class="category-box-title">Fashion :</h3>
+
+                    <a href="#" class="footer-category-link">T-shirt</a>
+                    <a href="#" class="footer-category-link">Shirts</a>
+                    <a href="#" class="footer-category-link">shorts & jeans</a>
+                    <a href="#" class="footer-category-link">jacket</a>
+                    <a href="#" class="footer-category-link">dress & frock</a>
+                    <a href="#" class="footer-category-link">innerwear</a>
+                    <a href="#" class="footer-category-link">hosiery</a>
+
+                </div>
+
+                <div class="footer-category-box">
+                    <h3 class="category-box-title">footwear :</h3>
+
+                    <a href="#" class="footer-category-link">sport</a>
+                    <a href="#" class="footer-category-link">formal</a>
+                    <a href="#" class="footer-category-link">Boots</a>
+                    <a href="#" class="footer-category-link">casual</a>
+                    <a href="#" class="footer-category-link">cowboy shoes</a>
+                    <a href="#" class="footer-category-link">safety shoes</a>
+                    <a href="#" class="footer-category-link">Party wear shoes</a>
+                    <a href="#" class="footer-category-link">Branded</a>
+                    <a href="#" class="footer-category-link">Firstcopy</a>
+                    <a href="#" class="footer-category-link">Long shoes</a>
+                </div>
+
+                <div class="footer-category-box">
+                    <h3 class="category-box-title">jewellery :</h3>
+
+                    <a href="#" class="footer-category-link">Necklace</a>
+                    <a href="#" class="footer-category-link">Earrings</a>
+                    <a href="#" class="footer-category-link">Couple rings</a>
+                    <a href="#" class="footer-category-link">Pendants</a>
+                    <a href="#" class="footer-category-link">Crystal</a>
+                    <a href="#" class="footer-category-link">Bangles</a>
+                    <a href="#" class="footer-category-link">bracelets</a>
+                    <a href="#" class="footer-category-link">nosepin</a>
+                    <a href="#" class="footer-category-link">chain</a>
+                    <a href="#" class="footer-category-link">Earrings</a>
+                    <a href="#" class="footer-category-link">Couple rings</a>
+                </div>
+
+                <div class="footer-category-box">
+                    <h3 class="category-box-title">cosmetics :</h3>
+
+                    <a href="#" class="footer-category-link">Shampoo</a>
+                    <a href="#" class="footer-category-link">Bodywash</a>
+                    <a href="#" class="footer-category-link">Facewash</a>
+                    <a href="#" class="footer-category-link">makeup kit</a>
+                    <a href="#" class="footer-category-link">liner</a>
+                    <a href="#" class="footer-category-link">lipstick</a>
+                    <a href="#" class="footer-category-link">prefume</a>
+                    <a href="#" class="footer-category-link">Body soap</a>
+                    <a href="#" class="footer-category-link">scrub</a>
+                    <a href="#" class="footer-category-link">hair gel</a>
+                    <a href="#" class="footer-category-link">hair colors</a>
+                    <a href="#" class="footer-category-link">hair dye</a>
+                    <a href="#" class="footer-category-link">sunscreen</a>
+                    <a href="#" class="footer-category-link">skin loson</a>
+                    <a href="#" class="footer-category-link">liner</a>
+                    <a href="#" class="footer-category-link">lipstick</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-nav">
+
+            <div class="container">
+
+                <ul class="footer-nav-list">
+
+                    <li class="footer-nav-item">
+                        <h2 class="nav-title">[[ #{footer.title.about} ]]</h2>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a th:href="@{|/info/donde-estamos|}" class="footer-nav-link">[[ #{footer.title.about.uno} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.about.dos} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.about.tres} ]]</a>
+                    </li>
+
+                </ul>
+
+                <ul class="footer-nav-list">
+
+                    <li class="footer-nav-item">
+                        <h2 class="nav-title">[[ #{footer.title.info} ]]</h2>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.info.uno} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.info.dos} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.info.tres} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.info.cuatro} ]]</a>
+                    </li>
+
+
+                </ul>
+
+                <ul class="footer-nav-list">
+
+                    <li class="footer-nav-item">
+                        <h2 class="nav-title">[[ #{footer.title.services} ]]</h2>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.services.uno} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.services.dos} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.services.tres} ]]</a>
+                    </li>
+
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.services.cuatro} ]]</a>
+                    </li>
+
+                </ul>
+
+                <ul class="footer-nav-list">
+
+                    <li class="footer-nav-item">
+                        <h2 class="nav-title">[[ #{footer.title.extras} ]]</h2>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.extras.uno} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.extras.dos} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.extras.tres} ]]</a>
+                    </li>
+
+                    <li class="footer-nav-item">
+                        <a href="#" class="footer-nav-link">[[ #{footer.title.extras.cuatro} ]]</a>
+                    </li>
+
+                </ul>
+
+                <ul class="footer-nav-list">
+
+                    <li class="footer-nav-item">
+                        <h2 class="nav-title">[[ #{footer.title.contact} ]]</h2>
+                    </li>
+
+                    <li class="footer-nav-item flex">
+                        <div class="icon-box">
+                            <ion-icon name="location-outline"></ion-icon>
+                        </div>
+                        <address class="content">
+                            <b>Facultad de Ciencia y Tecnología</b>
+                            <br />
+                            Edificio CCT<br />
+                            C/ Madre de Dios, 53<br />
+                            26006 Logroño (La Rioja)
+                        </address>
+                    </li>
+
+                    <li class="footer-nav-item flex">
+                        <div class="icon-box">
+                            <ion-icon name="call-outline"></ion-icon>
+                        </div>
+
+                        <a href="tel:+34 941001002" class="footer-nav-link">941 001 002</a>
+                    </li>
+
+                </ul>
+
+                <ul class="footer-nav-list">
+
+                    <li class="footer-nav-item">
+                        <h2 class="nav-title">[[ #{footer.title.rrss} ]]</h2>
+                    </li>
+
+                    <li>
+                        <ul class="social-link">
+
+                            <li class="footer-nav-item">
+                                <a href="#" class="footer-nav-link">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                            </li>
+
+                            <li class="footer-nav-item">
+                                <a href="#" class="footer-nav-link">
+                                    <ion-icon name="logo-twitter"></ion-icon>
+                                </a>
+                            </li>
+
+                            <li class="footer-nav-item">
+                                <a href="#" class="footer-nav-link">
+                                    <ion-icon name="logo-linkedin"></ion-icon>
+                                </a>
+                            </li>
+
+                            <li class="footer-nav-item">
+                                <a href="#" class="footer-nav-link">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+
+                </p>
+                <p class="copyright">
+                    Programación de aplicaciones web - Universidad de La Rioja
+                    <br />
+                    &#x2661;
+                    <a href="mailto:francisco-jose.pascual@unirioja.es">francisco-jose.pascual@unirioja.es</a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!--
+      - custom js link
+-->
+    <script th:src="@{/static/assets/js/practica8_language.js}"></script>
+    <script th:src="@{/static/assets/js/practica8_password.js}"></script>
+    <script th:src="@{/static/assets/js/practica9_toast.js}"></script>
+    <script th:src="@{/static/assets/js/practica8_wishlist.js}"></script>
+    <script th:src="@{/static/assets/js/practica8_cart.js}"></script>
+    <script th:src="@{/static/assets/js/practica9_nombreClienteActivo.js}"></script>
+    
+    <!--
+      - ionicon link
+-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+   
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    
+    <th:block th:replace="~{:: body-bottom} ?: _"></th:block>
+</body>
+
+</html>

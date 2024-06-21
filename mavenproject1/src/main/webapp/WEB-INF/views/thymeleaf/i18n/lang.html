@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    
+    <body>
+        <main layout:fragment="main-content">
+
+            <h2>[[ #{lang.settings.title} ]]</h2>
+
+            <div>
+                <label>[[ #{lang.settings.current} ]]:</label>
+                [[ ${#locale.displayLanguage} ]]
+                ([[ ${#locale} ]])
+            </div>
+
+            <section>    
+                <h3>[[ #{lang.settings.change.title} ]]</h3>
+                
+                <form>
+                    <div>
+                        <select name="lang">
+                            <option th:each="langOption : ${languageCollection}"
+                                    th:value="${langOption}"
+                                    th:selected="${#locale.toString()} == ${langOption}">
+                                [[ #{'lang.' + ${langOption}} ]]
+                            </option>
+                        </select>
+                        <button type="submit">[[ #{lang.settings.change.submit} ]]</button>     
+                    </div>
+                </form>
+
+            </section>
+            <section>
+                <a th:href="@{/}">Volver al inicio de Electrosa</a>
+            </section>
+
+        </main>
+    </body>
+</html>

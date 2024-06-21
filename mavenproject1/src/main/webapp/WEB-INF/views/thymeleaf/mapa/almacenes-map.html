@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html layout:decorate="~{_layout-zero}">
+    <head>
+        <title>Electrosa: Donde estamos</title>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+        <script th:inline="javascript">
+            var map;
+
+            initLeaflet = function () {
+                var cnf = {
+                    center: [40.4169473, -3.7035285],
+                    zoom: 6
+                };
+
+                map = L.map('mapId', cnf);
+
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+                }).addTo(map);
+
+                [# th:each="almacen : ${almacenes}"]
+                L.marker([ [[${ almacen.coordX }]], [[${ almacen.coordY }]] ])
+                    .bindPopup([[ | ${ almacen.calle }.${ almacen.cp } | ]])
+                    .addTo(map);
+                [/]
+                
+                obtener_localizacion()
+                
+            };
+
+            window.addEventListener("load", initLeaflet);
+
+        </script>
+        <script language="javascript">
+            function obtener_localizacion() {
+                if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(muestraPosicion);
+                } else {
+                  alert('Su navegador no soporta la API de geolocalizacion');
+                }
+            }
+
+            function muestraPosicion(posicion) {
+                var latitud = posicion.coords.latitude;
+                var longitud = posicion.coords.longitude;
+                L.circle([latitud,longitud],{
+                    color: '#5C7E74',
+                    fillColor: '5C7E74',
+                    fillOpacity: 0.5,
+                    radius: 20000
+                }).addTo(map);
+            }
+        </script>
+    </head>
+    <body>
+        <main layout:fragment="main-content">
+        
+            <div class="product-container">
+            <div class="container"> 
+                
+                <div class="product-box">
+                <div class="product-featured">
+                    <div class="showcase-wrapper ">
+                    <div class="showcase-container">
+                    <div class="showcase">
+                        <div id="mapId" style="position: static; width: 400px; height: 400px;"></div>
+                        <div class="accordion" id="accordionExample">
+                            <div th:each="almacen, iterStat : ${almacenes}">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" th:data-bs-target="'#collapse' + ${iterStat.count}" aria-expanded="false" th:aria-controls="'collapse' + ${iterStat.count}">
+                                            Almacen zona [[ ${almacen.zona} ]]
+                                        </button>
+                                    </h2>
+                                    <div th:id="'collapse' + ${iterStat.count}" class="accordion-collapse collapse" th:classappend="${iterStat.first} ? 'show' : ''" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <a>[[ ${almacen.calle} ]]</a>
+                                            <a>[[ ${almacen.provincia} ]]</a>
+                                            <a>[[ ${almacen.cp} ]] , [[ ${almacen.ciudad} ]]</a>
+                                            <strong>Coordenadas: </strong>
+                                            [[ ${almacen.coordX} ]] [[ ${almacen.coordY} ]]
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="sidebar showcase-container sidebar-boxd">
+                    <div>
+                        <h3>Más información</h3>
+                        <div class="line">
+                            <ion-icon name="bookmark-outline"></ion-icon> 
+                            <a href="#">Dónde estoy</a>
+                        </div>
+                        <div class="line">
+                            <ion-icon name="bookmark-outline"></ion-icon> 
+                            <a href="#">Contacto</a>
+                        </div>
+                        <div class="line">
+                            <ion-icon name="bookmark-outline"></ion-icon> 
+                            <a href="#">Nuestro equipo</a>
+                        </div>
+                        <div class="line">
+                            <ion-icon name="bookmark-outline"></ion-icon> 
+                            <a href="#">Mapa del sitio</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+            
+        </main>
+        
+        <th:block th:fragment="body-bottom">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        </th:block>
+        
+    </body>
+</html>

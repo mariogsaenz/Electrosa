@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    
+       
+    <property name="log.pattern" value="[%date] %-5level %thread|%class:%line|$: %message%n"/>
+    <property name="log.dayshistory" value="30"/>
+    
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%date] %-5level %logger{0} [%class{0}:%line] - %message%n %exception{10}</pattern>
+        </encoder>
+    </appender>
+
+    
+    <root level="info">
+        <appender-ref ref="stdout" />
+    </root>
+</configuration>
